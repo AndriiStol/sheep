@@ -10,8 +10,8 @@ public class TXT : MonoBehaviour
 
     void Start()
     {
-        language = PlayerPrefs.GetInt("language", language); //загружаем язык
-        textLine = GetComponent<Text>(); //обращаемся к компоненту
-        textLine.text = "" + text[language]; //указываем какой текст будет отображаться, в зависимости отвыбранного языка
+        language = PlayerPrefs.GetInt("language", language); 
+        textLine = GetComponent<Text>();
+        textLine.text = "" + text[language]; 
     }
 }
