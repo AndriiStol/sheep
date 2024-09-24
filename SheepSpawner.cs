@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class SheepSpawner : MonoBehaviour
 {
-    public GameObject sheepPrefabSkin1; // Префаб овцы для скина 1.
-    public GameObject sheepPrefabSkin2; // Префаб овцы для скина 2.
-    public GameObject sheepPrefabSkin3; // Префаб овцы для скина 3.
+    public GameObject sheepPrefabSkin1; 
+    public GameObject sheepPrefabSkin2; 
+    public GameObject sheepPrefabSkin3; 
 
     public Transform spawnPoint;
     public Transform despawnPoint;
-    public float spawnInterval = 3; // Начальное значение интервала.
+    public float spawnInterval = 3; 
     private int score = 0;
-    private bool isSpawning = false; // Флаг для отслеживания активности спавна.
-    public SheepControl[] sheepControl; // Ссылка на объект с компонентом SheepControl.
+    private bool isSpawning = false; 
+    public SheepControl[] sheepControl; 
     private Dictionary<GameObject, Animator> sheepAnimators = new Dictionary<GameObject, Animator>();
 
 
@@ -50,11 +50,11 @@ public class SheepSpawner : MonoBehaviour
                 break;
         }
 
-        // Добавьте компонент SheepDespawner для овцы.
+       
         SheepDespawner despawner = newSheep.AddComponent<SheepDespawner>();
         despawner.Initialize(despawnPoint.position);
 
-        // Сохраните аниматор овцы в словаре.
+    
         Animator sheepAnimator = newSheep.GetComponent<Animator>();
         sheepAnimators[newSheep] = sheepAnimator;
     }
@@ -78,10 +78,10 @@ public class SheepSpawner : MonoBehaviour
         }
     }
 
-    // Метод для обновления spawnInterval.
+   
     public void UpdateSpawnInterval()
     {
-        // Проверяем, делится ли счет на 10 без остатка.
+      
         if (score % 10 == 0)
         {
 
@@ -90,18 +90,18 @@ public class SheepSpawner : MonoBehaviour
                 sheep.sheepSpeed += 0.3f;
             }
 
-            // Уменьшаем spawnInterval на 0.1 каждые 10 очков.
+           
             spawnInterval -= 0.2f;
 
 
 
-            // Останавливаем вызов SpawnSheep и перезапускаем его с новым интервалом через задержку.
+            
             CancelInvoke("SpawnSheepWithSelectedSkin");
-            InvokeRepeating("SpawnSheepWithSelectedSkin", 2f, spawnInterval); // Добавляем небольшую задержку перед первым спавном. 
+            InvokeRepeating("SpawnSheepWithSelectedSkin", 2f, spawnInterval); 
         }
     }
 
-    // Метод для увеличения счета.
+
     public void IncreaseScore()
     {
 
