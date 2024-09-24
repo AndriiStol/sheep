@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject gameOverPanel;
     
-    public Button mainMenuButton; // Ссылка на кнопку для перехода в главное меню.
+    public Button mainMenuButton; 
     public SheepControl[] sheepControl;
     public Button pauseButton;
     private bool isPaused = false;
@@ -26,11 +26,11 @@ public class UIManager : MonoBehaviour
         musicManager = GameObject.FindGameObjectWithTag("audio").GetComponent<MusicManager>();
 
 
-        // Скрываем панель проигрыша при старте игры.
+        
         gameOverPanel.SetActive(false);
         Time.timeScale = 1;
 
-        // Привязываем функцию для перехода в главное меню к кнопке "MainMenu".
+        
         mainMenuButton.onClick.AddListener(GoToMainMenu);
         pauseButton.onClick.AddListener(TogglePause);
     }
@@ -46,14 +46,14 @@ public class UIManager : MonoBehaviour
         isPaused = !isPaused;
         if (isPaused)
         {
-            // Включаем паузу.
+            
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
             PausePanelIntro();
         }
         else
         {
-            // Выключаем паузу.
+          
             gameOverPanel.SetActive(false);
             Time.timeScale = 1;
             await PausePanelOutro();
@@ -75,13 +75,10 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Функция, вызываемая при нажатии на кнопку "Restart".
-   
 
-    // Функция, вызываемая при нажатии на кнопку "MainMenu".
     void GoToMainMenu()
     {
-        // Переходим на сцену с именем "main".
+
         SceneManager.LoadScene("main");
     }
 }
