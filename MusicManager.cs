@@ -19,22 +19,22 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        // Убедитесь, что существует только один MusicManager в игре
+        
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Этот объект не будет уничтожен при загрузке новой сцены
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
-            // Если уже существует другой MusicManager, уничтожьте этот
+            
             Destroy(gameObject);
         }
     }
 
     private void Start()
     {
-        // Здесь ваш код инициализации музыки
+       
         musicSource.Play();
         musicSource.clip = back;
     }
