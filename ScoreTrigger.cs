@@ -9,29 +9,29 @@ using DG.Tweening;
 public class ScoreTrigger : MonoBehaviour
 {
     public Text scoreText;
-    public Text highScoreText; // Ссылка на текст для отображения рекорда.
+    public Text highScoreText; 
     private int score = 0;
     private SheepSpawner sheepSpawner;
-    private int highScore; // Переменная для хранения рекорда.
+    private int highScore; 
 
-    public GameObject messagePanel; // Используйте объект панели вместо текста.
-    public float messageDuration = 2f; // Длительность отображения сообщения в секундах.
+    public GameObject messagePanel; 
+    public float messageDuration = 2f; 
 
     public delegate void ScoreChangedHandler(int newScore);
     public event ScoreChangedHandler OnScoreChanged;
-    private bool gameIsOver = false; // Добавлен флаг для отслеживания завершения игры.
+    private bool gameIsOver = false; 
 
     public int language;
     MusicManager musicManager;
 
-    public Text gameOverText; // Добавлен текст для отображения "Game Over" при достижении 100 очков.
+    public Text gameOverText; 
     public GameObject gameOverPanel;
 
     private void ShowGameOverPanel()
     {
         gameOverPanel.SetActive(true);
         gameOverText.text = "Game Over\nScore: " + score.ToString();
-        Time.timeScale = 0; // Останавливаем игру.
+        Time.timeScale = 0; 
     }
 
     private void Start()
@@ -45,10 +45,10 @@ public class ScoreTrigger : MonoBehaviour
         sheepSpawner = FindObjectOfType<SheepSpawner>();
         if (sheepSpawner == null)
         {
-            Debug.LogError("Не найден скрипт SheepSpawner.");
+            Debug.LogError("ГЌГҐ Г­Г Г©Г¤ГҐГ­ Г±ГЄГ°ГЁГЇГІ SheepSpawner.");
         }
 
-        // Загружаем рекорд из PlayerPrefs и отображаем его.
+        
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         highScoreText.text = "High Score: " + highScore.ToString();
     }
@@ -67,10 +67,10 @@ public class ScoreTrigger : MonoBehaviour
             }
             else if (language == 1)
             {
-                scoreText.text = "Очкі: " + score.ToString();
+                scoreText.text = "ГЋГ·ГЄВі: " + score.ToString();
             }
 
-            // Если текущий счет больше рекорда, обновляем рекорд и сохраняем его в PlayerPrefs.
+            
             if (score > highScore)
             {
                 highScore = score;
@@ -83,7 +83,7 @@ public class ScoreTrigger : MonoBehaviour
                 OnScoreChanged(score);
             }
 
-            // Если текущий счет больше или равен 100, показываем панель "Game Over".
+            
             if (score >= 100 && !gameIsOver)
             {
                 gameIsOver = true;
@@ -102,19 +102,19 @@ public class ScoreTrigger : MonoBehaviour
     private IEnumerator DisplayMessageCoroutine()
     {
 
-        // Включаем панель плавно.
+        
         messagePanel.SetActive(true);
         CanvasGroup canvasGroup = messagePanel.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0f; // Начальное значение альфа-компонента.
+        canvasGroup.alpha = 0f; 
 
-        // Плавное появление.
+        
         canvasGroup.DOFade(1f, 0.5f);
 
         musicManager.PlaySFX(musicManager.speedUp);
-        // Ждем указанное количество секунд.
+       
         yield return new WaitForSeconds(messageDuration);
 
-        // Плавное исчезновение.
+        // ГЏГ«Г ГўГ­Г®ГҐ ГЁГ±Г·ГҐГ§Г­Г®ГўГҐГ­ГЁГҐ.
         canvasGroup.DOFade(0f, 0.5f).OnComplete(() => messagePanel.SetActive(false));
 
 
