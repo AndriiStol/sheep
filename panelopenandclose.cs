@@ -9,7 +9,6 @@ public class panelopenandclose : MonoBehaviour
 
     public void OpenPanel()
     {
-        // Открыть панель
         if (panel != null)
         {
             panel.SetActive(true);
@@ -18,7 +17,6 @@ public class panelopenandclose : MonoBehaviour
 
     public void ClosePanel()
     {
-        // Закрыть панель
         if (panel != null)
         {
             panel.SetActive(false);
